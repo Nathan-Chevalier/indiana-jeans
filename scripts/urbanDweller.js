@@ -6,9 +6,11 @@ export const locationTypeChoices = async () => {
   const locations = await response.json();
   let html = `<h2> Which type of area do you live in?</h2>`;
 
-  for (const location of locations) {
-    html += `<input type="radio" name="location" value="${location.id}" /> ${location.label}`;
-  }
+  const locArray = locations.map((location) => {
+    html += `<div><input type="radio" name="location" value="${location.id}" /> ${location.label}</div>`;
+  });
+
+  html += locArray.join("");
   return html;
 };
 
